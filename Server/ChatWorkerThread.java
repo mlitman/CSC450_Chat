@@ -15,6 +15,9 @@ public class ChatWorkerThread extends Thread
             System.out.println("Connection Established...");
             this.theClientSocket = theClientSocket;
             this.clientOutput = new PrintStream(this.theClientSocket.getOutputStream());    
+            //System.out.println("About to add a printstream");
+            CORE.addClientThreadPrintStream(this.clientOutput);
+
             this.clientInput = new Scanner(this.theClientSocket.getInputStream());
         } 
         catch (Exception e) 
@@ -30,6 +33,13 @@ public class ChatWorkerThread extends Thread
         //this is what the thread does
         this.clientOutput.println("What is your name?");
         String name = clientInput.nextLine();
-        System.out.println("read: " + name);
+        CORE.broadcastMessage(name + " has joined!");
+        
+        String message;
+        while(true)
+        {
+            message = clientInput.nextLine();
+            CORE.broadcastMessage(message);
+        }
     }
 }

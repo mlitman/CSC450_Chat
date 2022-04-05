@@ -12,6 +12,24 @@ public class chatClient
         System.out.println(question);
         Scanner localInput = new Scanner(System.in);
         PrintStream clientOutput = new PrintStream(s.getOutputStream());
-        clientOutput.println(localInput.nextLine());
+        Thread lt = new Thread() {
+            public void run()
+            {
+                String line;
+                while(true)
+                {
+                    line = clientInput.nextLine();
+                    System.out.println(line);
+                }
+            }
+        };
+
+        lt.start();
+
+        while(true)
+        {
+            clientOutput.println(localInput.nextLine());
+        }
+        
     }
 }
