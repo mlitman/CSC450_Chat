@@ -5,7 +5,7 @@ public class CORE
 {
     private static ArrayList<PrintStream> theClientStreams = new ArrayList<PrintStream>();
     
-    public static void addClientThreadPrintStream(PrintStream ps)
+    public static synchronized void addClientThreadPrintStream(PrintStream ps)
     {
         System.out.println("adding client thread");
         CORE.theClientStreams.add(ps);
