@@ -28,10 +28,18 @@ public class chatClient
 
         lt.start();
 
+        String line;
         while(true)
         {
-            clientOutput.println(localInput.nextLine());
+            line = localInput.nextLine();
+            clientOutput.println(line);
+            if(line.equals("/quit"))
+            {
+                break;
+            }
         }
+        System.out.println("Goodbye");
+        System.exit(0);
         
     }
 }

@@ -11,6 +11,11 @@ public class CORE
         CORE.theClientStreams.add(ps);
     }
 
+    public static synchronized void removeClientThreadPrintStream(PrintStream ps)
+    {
+        CORE.theClientStreams.remove(ps);
+    }
+    
     public static void broadcastMessage(String message)
     {
         System.out.println("About to broadcast....");
